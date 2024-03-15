@@ -17,8 +17,6 @@ function matchPasswords(password, passwordConfirm) {
 export default function Login() {
     const navigate = useNavigate();
 
-    const {token, setToken, user, setUser} = useContext(UserContext);
-
     const [register, setRegister] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,9 +35,6 @@ export default function Login() {
                 email,
                 password,
             );
-
-            setToken(authData.token);
-            setUser({ email: authData.record.email, name: authData.record.name, username: authData.record.username , id: authData.record.id });
             navigate('/Dashboard');
         } catch (error) {
             console.log(error.message);
