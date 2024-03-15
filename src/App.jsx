@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import UserDashboard from "./pages/User_Dashboard";
+import { ThemeProvider } from "./providers/ThemeProvider";
+import RequireUser from "./lib/RequireUser";
 
 const routes = [
   {
@@ -18,7 +20,7 @@ const routes = [
   },
   {
     path: "/Dashboard",
-    element: <UserDashboard />,
+    element:<UserDashboard />,
   },
 ];
 
@@ -26,8 +28,10 @@ const router = createBrowserRouter(routes);
 
 export default function App() {
   return (
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <UserProvider>
+        <RouterProvider router={router} />
+      </UserProvider>
+    </ThemeProvider>
   );
 }
