@@ -3,19 +3,19 @@ import pb from "../lib/pocketclient";
 import RequireUser from "../lib/RequireUser";
 import {UserContext} from "../providers/UserProvider";
 
-import CreateEventForm from '../widgets/CreateEventForm'
+import CreatePartyForm from '../widgets/CreatePartyForm'
+import CreateAttendeeForm from '../widgets/CreateAttendeeForm';
 
 export default function UserDashboard() {
   const user = pb.authStore.model
 
-  const [events, setEvents] = useState([]);
   const [parties, setParties] = useState([]);
   const [attendees, setAttendees] = useState([]);
 
-  async function getEvents() {
+  async function getParties() {
     try{
-      const data = await pb.collection("events").getList();
-      setEvents(data.items);
+      const data = await pb.collection("parties").getList();
+      setParties(data.items);
     } catch (error) {
       console.log(error);
     }
@@ -33,18 +33,21 @@ export default function UserDashboard() {
   }
 
   useEffect(() => {
-    getEvents();
+    getParties();
     getAttendees();
+
   }, []);
 
 
   return (
     <RequireUser>
-      <div>
-        <h1>User Dashboard</h1>
-        <p>Welcome to the user dashboard</p>
+      <div className="mb-[2em] flex">
+        <h1 className="text-[2em] text-left">Dashboard</h1>
       </div>
-      <CreateEventForm />
+      <div className="grid gap-3 grid-cols-2 place-content-start mx-auto">
+        <CreatePartyForm />
+        <CreateAttendeeForm parties={parties} />
+      </div>
     </RequireUser>
   );
 }

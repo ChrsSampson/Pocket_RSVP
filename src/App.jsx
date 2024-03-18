@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import UserDashboard from "./pages/User_Dashboard";
 import { ThemeProvider } from "./providers/ThemeProvider";
-import RequireUser from "./lib/RequireUser";
+import Attendee_Dashboard from "./pages/Attendee_Dashboard";
 
 const routes = [
   {
@@ -22,6 +22,10 @@ const routes = [
     path: "/Dashboard",
     element:<UserDashboard />,
   },
+  {
+    path:"/attendee/:id",
+    element: <Attendee_Dashboard />
+  }
 ];
 
 const router = createBrowserRouter(routes);
