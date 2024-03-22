@@ -32,6 +32,10 @@ export default function UserBug() {
 
     const user = pb.authStore.model;
 
+    function handleSignOut(){ 
+        pb.authStore.clear();
+    }
+
     return (
         <Card
             onMouseEnter={() => setHover(true)}
@@ -39,13 +43,13 @@ export default function UserBug() {
             className="flex justify-center items-center p-2"
         >
             <CardHeader>
-                <h2>{user.email}</h2>
-                {hover && <h3>{user.username}</h3>}
+                <h2>{user && user.email}</h2>
+                {hover && <h3>{user && user.username}</h3>}
             </CardHeader>
             {hover && (
                 <div className="">
                     <div className="flex gap-1 my-auto">
-                        <Button>Sign Out</Button>
+                        <Button onClick={() => handleSignOut()}>Sign Out</Button>
                         <Button onClick={() => changeTheme()}>
                             {themeToEmoji()}
                         </Button>

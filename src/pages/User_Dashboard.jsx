@@ -6,6 +6,7 @@ import { UserContext } from '../providers/UserProvider';
 import UserBug from '../widgets/UserBug';
 import CreatePartyForm from '../widgets/CreatePartyForm';
 import CreateAttendeeForm from '../widgets/CreateAttendeeForm';
+import AttendeeList from '../widgets/AttendeeList';
 
 export default function UserDashboard() {
     const user = pb.authStore.model;
@@ -31,6 +32,11 @@ export default function UserDashboard() {
         }
     }
 
+    function updateResults() {
+        getParties();
+        getAttendees();    
+    }
+
     useEffect(() => {
         getParties();
         getAttendees();
@@ -42,9 +48,12 @@ export default function UserDashboard() {
                 <h1 className="text-[2em] text-left">Dashboard</h1>
                 <UserBug />
             </div>
-            <div className="grid gap-3 grid-cols-2 place-content-start mx-auto">
+            <div className="grid gap-3 grid-cols-1 md:grid-cols-2 place-content-start mx-auto">
                 <CreatePartyForm />
-                <CreateAttendeeForm parties={parties} />
+                <CreateAttendeeForm update={updateResults} parties={parties} />
+            </div>
+            <div>
+                <AttendeeList people={attendees} />
             </div>
         </RequireUser>
     );

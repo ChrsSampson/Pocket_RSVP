@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import UserDashboard from "./pages/User_Dashboard";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import Attendee_Dashboard from "./pages/Attendee_Dashboard";
+import EditAttendeePage from "./pages/Edit_Attendee";
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
   {
     path:"/attendee/:id",
     element: <Attendee_Dashboard />
+  },
+  {
+    path: "attendee/edit/:id",
+    element: <EditAttendeePage />,
   }
 ];
 

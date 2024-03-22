@@ -7,8 +7,20 @@ export default function RequireUser({children}) {
 
     const auth =  pb.authStore.token ? true: false;
 
+    const user = pb.authStore.model;
+
+    // when the user changes this will navigate them away or to the login page
+    pb.authStore.onChange((token, user) => {
+        if (!token || !user) {
+            navigate('/login');
+        } else {
+            navigate('/dashboard');
+        }
+    })
+
+    // prevent people from navigating directly to protected routes
     useEffect(() => {
-        if (!auth) {
+        if (!auth || !user) {
             navigate('/login');
         }
 

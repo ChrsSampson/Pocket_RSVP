@@ -4,8 +4,9 @@ import {Button} from '../components/ui/button';
 import {Card, CardContent, CardHeader, CardFooter, CardTitle, CardDescription} from '../components/ui/card';
 import {Select, SelectContent, SelectItem, SelectLabel, SelectValue, SelectGroup, SelectTrigger} from '../components/ui/select';
 import pb from "../lib/pocketclient";
+import { set } from 'date-fns';
 
-export default function CreateAttendeeForm ({parties}) {
+export default function CreateAttendeeForm ({parties, update}) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [party, setParty] = useState(null);
@@ -24,14 +25,20 @@ export default function CreateAttendeeForm ({parties}) {
         }
     }
 
-    // function create_random_code(length=6){
-    //     let code = "";
-    //     for (let i = 0; i < length; i++){
-    //         let random = Math.floor(Math.random() * 10);
-    //         code += random;
-    //     }
-    //     return code;
-    // }
+    function create_random_code(length=6){
+        let code = "";
+        for (let i = 0; i < length; i++){
+            let random = Math.floor(Math.random() * 10);
+            code += random;
+        }
+        return code;
+    }
+
+    function clear_form(){
+        setFirstName("");
+        setLastName("");
+        setParty(null);
+    }
 
     async function handleSubmit(e){
         e.preventDefault();
@@ -47,13 +54,16 @@ export default function CreateAttendeeForm ({parties}) {
                 attending:'pending',
                 party:party, 
                 plus_one:plusOne, 
-                food_selection:1
+                food_selection:1,
+                code: create_random_code(),
             });
 
             if (error){
                 setError("");
             }
             setMessage("New Attendee Created")
+            clear_form();
+            update();
         } catch (error) {
             console.error(error);
             setError(error.message)
