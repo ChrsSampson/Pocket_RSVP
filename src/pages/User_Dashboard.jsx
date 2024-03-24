@@ -49,9 +49,7 @@ export default function UserDashboard() {
                 <h1 className="text-[2em] text-left">Dashboard</h1>
                 <UserBug />
             </div>
-            <div>
-                <Reports attendees={attendees} />
-            </div>
+            <div>{attendees && <Reports attendees={attendees} />}</div>
             <div className="grid gap-3 grid-cols-1 md:grid-cols-2 place-content-start mx-auto">
                 <CreatePartyForm />
                 <CreateAttendeeForm update={updateResults} parties={parties} />
