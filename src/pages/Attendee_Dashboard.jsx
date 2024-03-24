@@ -20,6 +20,7 @@ import {
     SelectContent,
     SelectValue,
 } from '../components/ui/select';
+import FoodMenu from '../widgets/FoodMenu';
 
 export default function Attendee_Dashboard() {
     const { id } = useParams();
@@ -219,7 +220,7 @@ export default function Attendee_Dashboard() {
                                                     Prime Rib
                                                 </SelectItem>
                                                 <SelectItem value="3">
-                                                    Salad?
+                                                    Salmon
                                                 </SelectItem>
                                             </SelectContent>
                                         </Select>
@@ -242,6 +243,7 @@ export default function Attendee_Dashboard() {
                         </Card>
                     </section>
                 )}
+                <FoodMenu />
             </div>
         );
     }

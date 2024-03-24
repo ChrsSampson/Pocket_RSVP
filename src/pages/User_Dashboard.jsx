@@ -7,6 +7,7 @@ import UserBug from '../widgets/UserBug';
 import CreatePartyForm from '../widgets/CreatePartyForm';
 import CreateAttendeeForm from '../widgets/CreateAttendeeForm';
 import AttendeeList from '../widgets/AttendeeList';
+import Reports from '../widgets/Reports';
 
 export default function UserDashboard() {
     const user = pb.authStore.model;
@@ -34,7 +35,7 @@ export default function UserDashboard() {
 
     function updateResults() {
         getParties();
-        getAttendees();    
+        getAttendees();
     }
 
     useEffect(() => {
@@ -47,6 +48,9 @@ export default function UserDashboard() {
             <div className="mb-[2em] flex justify-between">
                 <h1 className="text-[2em] text-left">Dashboard</h1>
                 <UserBug />
+            </div>
+            <div>
+                <Reports attendees={attendees} />
             </div>
             <div className="grid gap-3 grid-cols-1 md:grid-cols-2 place-content-start mx-auto">
                 <CreatePartyForm />
