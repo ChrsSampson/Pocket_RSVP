@@ -8,6 +8,7 @@ import UserDashboard from "./pages/User_Dashboard";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import Attendee_Dashboard from "./pages/Attendee_Dashboard";
 import EditAttendeePage from "./pages/Edit_Attendee";
+import QR_Print from "./pages/QR_Print";
 
 const routes = [
   {
@@ -30,7 +31,15 @@ const routes = [
   {
     path: "attendee/edit/:id",
     element: <EditAttendeePage />,
-  }
+  },
+  {
+    path: 'QR_Codes',
+    element: <QR_Print />,
+  },
+  {
+    path: "*",
+    element: <div>404 Not Found</div>,
+  },
 ];
 
 const router = createBrowserRouter(routes);

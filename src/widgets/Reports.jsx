@@ -1,5 +1,9 @@
+import { useNavigate } from "react-router-dom";
+import {Button} from '../components/ui/button'
+
 export default function Reports({ attendees = [] }) {
     const totalAttendees = attendees.length;
+    const navigate = useNavigate();
 
     const foods = ['Chicken', 'Prime Rib', 'Salmon'];
 
@@ -40,6 +44,9 @@ export default function Reports({ attendees = [] }) {
                     {winning_food && (
                         <sub>{foods[winning_food]} is winning</sub>
                     )}
+                </div>
+                <div>
+                    <Button onClick={() => navigate('/qr_codes')}>QR Codes</Button>
                 </div>
             </div>
         </section>
