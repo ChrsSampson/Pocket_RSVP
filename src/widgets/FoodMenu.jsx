@@ -12,7 +12,7 @@ export default function FoodMenu() {
                         potatos.
                     </CardDescription>
                 </CardHeader>
-                <CardContent className="flex justify-around">
+                <CardContent className="flex flex-col sm:flex-row gap-3 sm:gap-0  justify-around">
                     <Card>
                         <CardHeader>
                             <CardTitle>Rosemary Roasted Chicken</CardTitle>

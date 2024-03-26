@@ -32,9 +32,16 @@ export default function Attendee_Dashboard() {
 
     // form values
     const [attending, setAttending] = useState(null);
-    const [plusOne, setPlusOne] = useState(false);
-    const [request, setRequest] = useState('');
-    const [food, setFood] = useState('');
+    const [plusOne, setPlusOne] = useState(
+        attendee ? attendee.plus_one : false
+    );
+    const [request, setRequest] = useState(
+        attendee ? attendee.song_request : ''
+    );
+    const [food, setFood] = useState(attendee ? attendee.food_selection : null);
+    const [plusOneFood, setPlusOneFood] = useState(
+        attendee ? attendee.plus_one_food : null
+    );
 
     const { theme, setTheme } = useTheme();
 
@@ -55,7 +62,14 @@ export default function Attendee_Dashboard() {
         try {
             const data = await pb.collection('attendees').getOne(id);
             if (data.code === invite_code) {
+                console.log(data);
                 setAttendee(data);
+                // update form values
+                setAttending(data.attending);
+                setPlusOne(data.plus_one);
+                setRequest(data.song_request);
+                setFood(data.food_selection);
+                setPlusOneFood(data.plus_one_food);
             }
             setLoading(false);
         } catch (error) {
@@ -74,6 +88,7 @@ export default function Attendee_Dashboard() {
                 plus_one: plusOne,
                 song_request: request,
                 food_selection: food,
+                plus_one_food: plusOneFood,
             };
 
             await pb.collection('attendees').update(id, data);
@@ -107,6 +122,12 @@ export default function Attendee_Dashboard() {
     useEffect(() => {
         getAttendee();
     }, []);
+
+    useEffect(() => {
+        if (!plusOne) {
+            setPlusOneFood(null);
+        }
+    }, [plusOne]);
 
     if (error) {
         return (
@@ -164,7 +185,7 @@ export default function Attendee_Dashboard() {
                                             htmlFor="attend"
                                             className="text-left"
                                         >
-                                            Can I expect trouble?
+                                            Will you be attending?
                                         </label>
                                         <Select
                                             name="attend"
@@ -186,28 +207,20 @@ export default function Attendee_Dashboard() {
                                             </SelectContent>
                                         </Select>
                                     </div>
-                                    <div className="flex items-center gap-2">
-                                        <label htmlFor="+">
-                                            Make it double?
-                                        </label>
-                                        {/* <input type="checkbox" /> */}
-                                        <Checkbox
-                                            onClick={(e) =>
-                                                setPlusOne(!plusOne)
-                                            }
-                                            checked={plusOne}
-                                        />
-                                    </div>
+
                                     <div className="flex flex-col gap-2">
                                         <label
                                             htmlFor="food"
                                             className="text-left"
                                         >
-                                            What are you eating?{' '}
+                                            What will you be eating?{' '}
                                         </label>
                                         <Select
                                             name="food"
-                                            value={attendee.food_selection}
+                                            value={food}
+                                            onValueChange={(value) =>
+                                                setFood(value)
+                                            }
                                         >
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Food Selection" />
@@ -234,9 +247,59 @@ export default function Attendee_Dashboard() {
                                             placeholder="Song Request (Choose Carfully)"
                                         />
                                     </div>
-                                    <div></div>
-                                    <div className="flex justify-start">
+                                    <div className="flex items-center gap-2">
+                                        <label htmlFor="+">
+                                            Are you bringing a guest?
+                                        </label>
+                                        {/* <input type="checkbox" /> */}
+                                        <Checkbox
+                                            onCheckedChange={(value) => {
+                                                setPlusOne(value);
+                                            }}
+                                            checked={plusOne}
+                                            value={plusOne}
+                                        />
+                                    </div>
+                                    {plusOne && (
+                                        <div className="flex flex-col gap-2">
+                                            <label
+                                                htmlFor="food"
+                                                className="text-left"
+                                            >
+                                                What will your guest be eating?{' '}
+                                            </label>
+                                            <Select
+                                                name="food"
+                                                defaultValue="1"
+                                                value={plusOneFood}
+                                                onValueChange={(value) =>
+                                                    setPlusOneFood(value)
+                                                }
+                                            >
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Food Selection" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="1">
+                                                        Chicken
+                                                    </SelectItem>
+                                                    <SelectItem value="2">
+                                                        Prime Rib
+                                                    </SelectItem>
+                                                    <SelectItem value="3">
+                                                        Salmon
+                                                    </SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    )}
+                                    <div className="flex place-items-center gap-3 justify-start">
                                         <Button>Save</Button>
+                                        {message && (
+                                            <span className="text-green-400">
+                                                {message}
+                                            </span>
+                                        )}
                                     </div>
                                 </form>
                             </CardContent>

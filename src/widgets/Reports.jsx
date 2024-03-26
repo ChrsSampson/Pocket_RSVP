@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import {Button} from '../components/ui/button'
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../components/ui/button';
 
 export default function Reports({ attendees = [] }) {
     const totalAttendees = attendees.length;
@@ -11,6 +11,13 @@ export default function Reports({ attendees = [] }) {
         return p.attending === 'true' ? acum + 1 : acum;
     }, 0);
 
+    const plus_ones_confirmed = attendees.reduce((acum, p) => {
+        if (p.plus_one) {
+            acum += 1;
+        }
+        return acum;
+    }, 0);
+
     const percentConfirmed = (confirmed / totalAttendees) * 100;
 
     const food_orders = { 1: 0, 2: 0, 3: 0 };
@@ -20,18 +27,27 @@ export default function Reports({ attendees = [] }) {
     });
 
     const winning_food = Object.keys(food_orders).reduce((a, b) => {
-        return food_orders[a] > food_orders[b] ? a : b;
+        if (b > a) {
+            return a;
+        }
     });
 
     return (
         <section className="p-4 my-2 border border-spacing-1 rounded-lg">
             <div className="flex justify-between">
                 <div>
-                    <h2 className="text-[1.25em]">{totalAttendees} Invited</h2>
-                    <h2>{confirmed} Confirmed</h2>
+                    <div className="flex place-items-middle gap-3">
+                        <div className="border-r-2 pxq-auto">
+                            <h3>{totalAttendees} People Invited</h3>
+                            <h3>{confirmed} have confirmed</h3>
+                        </div>
+                        <div>
+                            <h3>{plus_ones_confirmed} "plus ones" added</h3>
+                        </div>
+                    </div>
                     {percentConfirmed > 0 && (
                         <sub className="text-yellow-500">
-                            (Thats {percentConfirmed}% btw)
+                            ({percentConfirmed}% of ya peeps are coming)
                         </sub>
                     )}
                 </div>
@@ -42,11 +58,15 @@ export default function Reports({ attendees = [] }) {
                         <span>Salmon: {food_orders[3]}</span>
                     </div>
                     {winning_food && (
-                        <sub>{foods[winning_food]} is winning</sub>
+                        <sub className="text-yellow-500">
+                            ({foods[winning_food]} is winning)
+                        </sub>
                     )}
                 </div>
                 <div>
-                    <Button onClick={() => navigate('/qr_codes')}>QR Codes</Button>
+                    <Button onClick={() => navigate('/qr_codes')}>
+                        QR Code Sheet
+                    </Button>
                 </div>
             </div>
         </section>
