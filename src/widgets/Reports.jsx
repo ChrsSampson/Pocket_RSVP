@@ -63,9 +63,12 @@ export default function Reports({ attendees = [] }) {
                         </sub>
                     )}
                 </div>
-                <div>
+                <div className="flex flex-col gap-2">
                     <Button onClick={() => navigate('/qr_codes')}>
                         QR Code Sheet
+                    </Button>
+                    <Button onClick={() => navigate('/playlist')}>
+                        Playlist
                     </Button>
                 </div>
             </div>
