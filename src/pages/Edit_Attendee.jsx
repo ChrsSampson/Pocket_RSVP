@@ -97,50 +97,48 @@ export default function EditAttendeePage() {
                         <CardTitle>Edit Person</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <section className="grid grid-cols-2 gap-2">
+                        <section className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <form
                                 onSubmit={handleSubmit}
-                                className="grid border py-3 rounded-lg place-items-center gap-2"
+                                className="grid border py-3 rounded-lg place-items-center gap-3"
                             >
                                 {message && (
                                     <span className="text-green-400">
                                         {message}
                                     </span>
                                 )}
-                                <div className="flex justify-center w-1/2 gap-3">
-                                    <div className="flex flex-col justify-start">
-                                        <label className="text-left">
-                                            First Name
-                                        </label>
-                                        <Input
-                                            placeholder="First Name"
-                                            value={person.first_name}
-                                            onChange={(e) =>
-                                                update_person_state(
-                                                    e.target.value,
-                                                    'first_name'
-                                                )
-                                            }
-                                        />
-                                    </div>
-                                    <div className="flex flex-col justify-start">
-                                        <label className="text-left">
-                                            Last Name
-                                        </label>
-                                        <Input
-                                            placeholder="Last Name"
-                                            value={person.last_name}
-                                            onChange={(e) =>
-                                                update_person_state(
-                                                    e.target.value,
-                                                    'last_name'
-                                                )
-                                            }
-                                        />
-                                    </div>
+                                <div className="flex gap-1 flex-col justify-start">
+                                    <label className="text-left">
+                                        First Name
+                                    </label>
+                                    <Input
+                                        placeholder="First Name"
+                                        value={person.first_name}
+                                        onChange={(e) =>
+                                            update_person_state(
+                                                e.target.value,
+                                                'first_name'
+                                            )
+                                        }
+                                    />
                                 </div>
-                                <div className="flex place-items-center justify-between gap-2">
-                                    <label>Their Response</label>
+                                <div className="flex gap-1 flex-col justify-start">
+                                    <label className="text-left">
+                                        Last Name
+                                    </label>
+                                    <Input
+                                        placeholder="Last Name"
+                                        value={person.last_name}
+                                        onChange={(e) =>
+                                            update_person_state(
+                                                e.target.value,
+                                                'last_name'
+                                            )
+                                        }
+                                    />
+                                </div>
+                                <div className="flex flex-col w-10/12 sm:w-1/3 place-items-center gap-2">
+                                    <label className="text-left">Attending</label>
                                     <Select
                                         value={person.attending}
                                         onValueChange={(value) => {
@@ -168,8 +166,8 @@ export default function EditAttendeePage() {
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className="flex place-items-center w-1/3 justify-between gap-2">
-                                    <label>Food Choice</label>
+                                <div className="flex flex-col place-items-center w-10/12 sm:w-1/3 gap-2">
+                                    <label className="text-left">Food Choice</label>
                                     <Select
                                         value={person.food_selection}
                                         onValueChange={(value) => {
@@ -197,7 +195,7 @@ export default function EditAttendeePage() {
                                         </SelectContent>
                                     </Select>
                                 </div>
-                                <div className="flex place-items-center gap-3">
+                                <div className="flex place-items-center my-3 gap-3">
                                     <label>Plus One?</label>
                                     <Checkbox
                                         value={person.plus_one}
@@ -213,8 +211,8 @@ export default function EditAttendeePage() {
                                     </Checkbox>
                                 </div>
                                 {person.plus_one && (
-                                    <div className="flex place-items-center w-1/3 justify-between gap-2">
-                                        <label>Food Choice</label>
+                                    <div className="flex flex-col place-items-center w-10/12 sm:w-1/3 justify-between gap-2">
+                                        <label className="text-left">Guest Food</label>
                                         <Select
                                             value={person.plus_one_food}
                                             onValueChange={(value) => {
