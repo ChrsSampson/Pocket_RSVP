@@ -7,18 +7,31 @@ export default function Playlist() {
 
     async function getSongs() {
         try {
-            const data = await pb
-                .collection('attendees')
-                .getList({ filter: pb.filter('song_request') });
-            setSongs(data.items);
+            const data = await pb.collection('attendees').getList();
+            const song_data = reduce_to_song_data(data.items);
+            setSongs(song_data);
         } catch (error) {
             console.log(error);
         }
     }
 
+    function reduce_to_song_data(collection) {
+        return collection.reduce((accum = [], item) => {
+            if (item.song_request) {
+                accum.push({
+                    name: `${item.first_name} ${item.last_name}`,
+                    song: item.song_request,
+                });
+            }
+            return accum;
+        }, []);
+    }
+
     useEffect(() => {
         getSongs();
     }, []);
+
+    // TODO: create a nice table for this data to live in
 
     return (
         <RequireUser>
@@ -28,9 +41,10 @@ export default function Playlist() {
                 </h3>
                 <div>
                     {songs &&
-                        songs.map((song) => (
-                            <div key={song.id}>
-                                <h4>{song}</h4>
+                        songs.map((item) => (
+                            <div className="flex" key={item.name + item.song}>
+                                <h4>{item.name}</h4>
+                                <h4>{item.song}</h4>
                             </div>
                         ))}
                 </div>
