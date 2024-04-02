@@ -29,9 +29,23 @@ export default function Playlist() {
         }
     }
 
+    function reduce_to_song_data(collection) {
+        return collection.reduce((accum = [], item) => {
+            if (item.song_request) {
+                accum.push({
+                    name: `${item.first_name} ${item.last_name}`,
+                    song: item.song_request,
+                });
+            }
+            return accum;
+        }, []);
+    }
+
     useEffect(() => {
         getSongs();
     }, []);
+
+    // TODO: create a nice table for this data to live in
 
     return (
         <RequireUser>
