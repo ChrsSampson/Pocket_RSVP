@@ -10,6 +10,7 @@ import Attendee_Dashboard from './pages/Attendee_Dashboard';
 import EditAttendeePage from './pages/Edit_Attendee';
 import QR_Print from './pages/QR_Print';
 import Playlist from './pages/Playlist';
+import AttendeeLoginPage from './pages/Attendee_Login';
 
 const routes = [
     {
@@ -36,6 +37,10 @@ const routes = [
     {
         path: 'QR_Codes',
         element: <QR_Print />,
+    },
+    {
+        path: '/attendee/login',
+        element: <AttendeeLoginPage />,
     },
     {
         path: 'playlist',
