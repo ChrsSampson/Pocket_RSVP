@@ -6,19 +6,17 @@
 @layer base {
     @font-face {
         font-family: "SeasideResort";
-        src: url("../public/fonts/SeasideResortNF.ttf") format("truetype");
+        src: url("/fonts/SeasideResortNF.ttf") format("truetype");
     }
 
     @font-face {
         font-family: "Semplicita";
-        src: url("../public/fonts/Semplicita\ Medium.otf");
+        src: url("/fonts/Semplicita\ Medium.otf");
     }
 
     h1,
-    h2,
-    h3,
-    h4,
-    h5 {
+    h2
+    {
         font-family: "SeasideResort", sans-serif;
     }
 

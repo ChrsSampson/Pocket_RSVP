@@ -12,6 +12,7 @@ import QR_Print from './pages/QR_Print';
 import Playlist from './pages/Playlist';
 import AttendeeLoginPage from './pages/Attendee_Login';
 import AboutPage from './pages/About';
+import Location from './pages/Location';
 
 const routes = [
     {
@@ -22,6 +23,10 @@ const routes = [
     {
         path: "/about",
         element: <AboutPage />,
+    },
+    {
+        path: '/location',
+        element: <Location />,
     },
     {
         path: '/login',

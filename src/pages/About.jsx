@@ -51,7 +51,7 @@ export default function AboutPage () {
                     <h1 className="text-2xl">Food</h1>
                     <Divider />
                     <div className="md:text-xl max-w-[75%]">
-                        <p className="md:text-xl">Plated Dinner Options</p>
+                        <p className="md:text-xl">Plated Dinner Options:</p>
                         <p>Entrees: Prime Rib, Chicken, Salmon</p>
                         <p>Sides: All Meals come with a Garden Salad and Potatos</p>
                         <p>Dessert: Cookies and Pastries</p>
