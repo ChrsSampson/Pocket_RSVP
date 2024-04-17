@@ -8,7 +8,7 @@ export default function MainMenu () {
             <Link to="/">Home</Link>
             <Link to="/location">Location</Link>
             <Link to="/about">About</Link>
-            <Link to="/login">RSVP</Link>
+            <Link to="/attendee/login">RSVP</Link>
             <Divider double={true} />
         </nav>
     )

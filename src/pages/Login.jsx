@@ -42,33 +42,33 @@ export default function Login() {
     }
 
 
-     async function handleRegister(e) {
-        e.preventDefault();
+    //  async function handleRegister(e) {
+    //     e.preventDefault();
 
-        if (!matchPasswords(password, passwordConfirm) && password && passwordConfirm) {
-            setError('Passwords do not match');
-            return;
-        }
+    //     if (!matchPasswords(password, passwordConfirm) && password && passwordConfirm) {
+    //         setError('Passwords do not match');
+    //         return;
+    //     }
 
-        if(!email) {
-            setError('Email is required');
-            return;
-        }
+    //     if(!email) {
+    //         setError('Email is required');
+    //         return;
+    //     }
 
-        try {
-            const res = await pb.collection('users').create({
-                email,
-                password,
-                passwordConfirm,
-                name,
-            });
+    //     try {
+    //         const res = await pb.collection('users').create({
+    //             email,
+    //             password,
+    //             passwordConfirm,
+    //             name,
+    //         });
 
-            setMessage('Account created successfully');
-            setRegister(false);
-        } catch (error) {
-            setError(error.message);
-        }
-    }
+    //         setMessage('Account created successfully');
+    //         setRegister(false);
+    //     } catch (error) {
+    //         setError(error.message);
+    //     }
+    // }
 
     // ------------------Register Form ----------------------
 
@@ -153,9 +153,9 @@ export default function Login() {
                 <div className="flex justify-start">
                     <Button type="submit">Login</Button>
                 </div>
-                <sub className="hover:underline cursor-pointer" onClick={() => setRegister(true)}>
+                {/* <sub className="hover:underline cursor-pointer" onClick={() => setRegister(true)}>
                     Dont Have an Account?
-                </sub>
+                </sub> */}
             </form>
         </div>
     );
