@@ -11,12 +11,17 @@ import EditAttendeePage from './pages/Edit_Attendee';
 import QR_Print from './pages/QR_Print';
 import Playlist from './pages/Playlist';
 import AttendeeLoginPage from './pages/Attendee_Login';
+import AboutPage from './pages/About';
 
 const routes = [
     {
         path: '/',
         element: <Home />,
         index: true,
+    },
+    {
+        path: "/about",
+        element: <AboutPage />,
     },
     {
         path: '/login',
