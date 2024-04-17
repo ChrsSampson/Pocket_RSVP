@@ -2,21 +2,16 @@ on:
     merge:
         branches:
             - deploy
+
 jobs:
-    deploy:
-        build:
-            name: Build and Deploy
-            runs-on: ubuntu-latest
-            strategy:
-                matrix:
-                    node_version: ['20.x']
+    build:
+        runs-on: ubuntu-latest
 
         steps:
             - uses: actions/checkout@v4
-            - name: Use Node.js ${{ matrix.node_version }}
-
-            - name: Install and Build
-            run : |
-              npm ci
-              npm run build
-              
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20.x'
+            - run: npm ci
+            - run: npm run build
