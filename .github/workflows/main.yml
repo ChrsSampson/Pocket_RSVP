@@ -1,7 +1,4 @@
-on:
-    merge:
-        branches:
-            - deploy
+on: [push]
 
 jobs:
     build:
