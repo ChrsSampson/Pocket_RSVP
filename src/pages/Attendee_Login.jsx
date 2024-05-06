@@ -12,24 +12,18 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const test_user = {
-    first: 'sharlot',
-    last: 'cameo',
-    code: '750549',
-};
-
 export default function AttendeeLoginPage() {
     const navigate = useNavigate();
 
-    const [firstName, setFirstName] = useState(test_user.first);
-    const [lastName, setLastName] = useState(test_user.last)  ;
-    const [code, setCode] = useState(test_user.code);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    // const [code, setCode] = useState(test_user.code);
     const [error, setError] = useState('');
 
     async function getUser(first = '', last = '') {
         try {
-            const user = await pb.collection('attendees').getList(1,1,{
-                filter: `first_name ~ "${first}" && last_name ~ "${last}" && code = "${code}"` 
+            const user = await pb.collection('attendees').getList(1, 1, {
+                filter: `first_name ~ "${first.trim()}" && last_name ~ "${last.trim()}"`,
             });
 
             return user ? user.items[0] : null;
@@ -42,9 +36,7 @@ export default function AttendeeLoginPage() {
 
     async function testPage(user) {
         try {
-            const res = await fetch(
-                `/attendee/${user.id}?invite_code=${user.code}`
-            );
+            const res = await fetch(`/attendee/${user.id}`);
 
             if (res.status === 200) {
                 return true;
@@ -63,15 +55,17 @@ export default function AttendeeLoginPage() {
         e.preventDefault();
 
         try {
-            if (firstName && lastName && code) {
+            if (firstName && lastName) {
                 const user = await getUser(firstName, lastName);
 
                 if (user) {
                     const valid = await testPage(user);
 
                     if (valid) {
-                        navigate(`/attendee/${user.id}?invite_code=${code}`);
+                        navigate(`/attendee/${user.id}`);
                     }
+                } else {
+                    setError('That person is not valid');
                 }
             }
         } catch (err) {
@@ -111,16 +105,6 @@ export default function AttendeeLoginPage() {
                                 value={lastName}
                                 onChange={(e) => setLastName(e.target.value)}
                                 required
-                                type="text"
-                            />
-                        </div>
-                        <div>
-                            <label>Invite Code</label>
-                            <Input
-                                value={code}
-                                onChange={(e) => setCode(e.target.value)}
-                                required
-                                placeholder=""
                                 type="text"
                             />
                         </div>

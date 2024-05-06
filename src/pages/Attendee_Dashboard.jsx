@@ -45,11 +45,6 @@ export default function Attendee_Dashboard() {
 
     const { theme, setTheme } = useTheme();
 
-    // get code from query string
-    const invite_code = new URLSearchParams(window.location.search).get(
-        'invite_code'
-    );
-
     function switchTheme() {
         if (theme === 'dark') {
             setTheme('light');
@@ -61,8 +56,7 @@ export default function Attendee_Dashboard() {
     async function getAttendee() {
         try {
             const data = await pb.collection('attendees').getOne(id);
-            if (data.code === invite_code) {
-                console.log(data);
+            if (data) {
                 setAttendee(data);
                 // update form values
                 setAttending(data.attending);
