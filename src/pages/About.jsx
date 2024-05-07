@@ -137,12 +137,39 @@ export default function AboutPage() {
                 <Container>
                     <h1 className="text-xl">Registry</h1>
                     <Divider />
-                    <div>
+                    <div className="mb-[1em]">
+                        <div className="border-spacing-1 border rounded-md p-[1em] mb-[2em]">
+                            <p className="pb-[1em]">Hello Family & Friends!</p>
+                            <p className="px-[4em] text-left mb-[1em] indent-8 leading-7">
+                                We know this might not be the most traditional
+                                way but having you there on our special day is
+                                already the best gift we could ask for. If you
+                                do wish to bless us with a gift for our wedding,
+                                we would greatly appreciate contributions to
+                                help us make the best memories during our
+                                upcoming honeymoon or for our future home
+                                together.
+                            </p>
+                            <p className="px-[4em] text-left mb-[1em] indent-8 leading-7">
+                                A QRcode will be listed below to scan if you
+                                wish to send us a small gift to celebrate. A
+                                link to our amazon registry is alos availible.
+                                All gifts will be greatly appreciated! <br />
+                                Thank you!
+                            </p>
+                            <p>Ryan & Heather</p>
+                        </div>
                         <a
                             className="text-[1.5em] hover:underline hover:bg-navy-300 bg-navy-500 rounded-sm text-white px-[.5em] py-[.25em]"
                             href="https://amazon.com/wedding/registry/19BN66YELEG4H"
                         >
-                            Heather Sampson and Ryan Stewart's Registry
+                            Wedding Registry
+                        </a>
+                    </div>
+                    <div>
+                        <span className="text-[1.25em]">Venmo</span>
+                        <a href="https://venmo.com/u/heather-sampson-10">
+                            <img className="h-[10em]" src="/img/venmo_qr.png" />
                         </a>
                     </div>
                 </Container>

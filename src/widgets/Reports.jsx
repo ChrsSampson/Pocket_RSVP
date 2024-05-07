@@ -18,12 +18,15 @@ export default function Reports({ attendees = [] }) {
         return acum;
     }, 0);
 
-    const percentConfirmed = (confirmed / totalAttendees) * 100;
+    const percentConfirmed = Math.round((confirmed / totalAttendees) * 100);
 
     const food_orders = { 1: 0, 2: 0, 3: 0 };
 
+    // only counts food if person is coming
     attendees.forEach((attendee) => {
-        food_orders[attendee.food_selection] += 1;
+        if (attendee.attending === 'true') {
+            food_orders[attendee.food_selection] += 1;
+        }
     });
 
     const winning_food = Object.keys(food_orders).reduce((a, b) => {

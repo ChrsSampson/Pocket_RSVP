@@ -8,8 +8,6 @@ import pb from '../lib/pocketclient';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 
-
-
 function matchPasswords(password, passwordConfirm) {
     return password === passwordConfirm;
 }
@@ -24,23 +22,21 @@ export default function Login() {
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
-    const matchPasswords = (password, passwordConfirm) => password === passwordConfirm;
-
+    const matchPasswords = (password, passwordConfirm) =>
+        password === passwordConfirm;
 
     async function handleLogin(e) {
         e.preventDefault();
 
         try {
-            const authData = await pb.collection('users').authWithPassword(
-                email,
-                password,
-            );
+            const authData = await pb
+                .collection('users')
+                .authWithPassword(email, password);
             navigate('/Dashboard');
         } catch (error) {
             console.log(error.message);
         }
     }
-
 
     //  async function handleRegister(e) {
     //     e.preventDefault();
@@ -72,48 +68,59 @@ export default function Login() {
 
     // ------------------Register Form ----------------------
 
-    if (register){
-        return(
+    if (register) {
+        return (
             <div className="grid place-items-center min-w-[50%] min-h-[100vh]">
                 <form onSubmit={handleRegister} className="flex flex-col gap-3">
                     <div className="flex justify-start">
                         <h1>Register</h1>
                     </div>
-                    { error &&
-                        <span className="text-red-400"> {error} </span>
-                    }
+                    {error && <span className="text-red-400"> {error} </span>}
                     <div className="flex flex-col gap-1">
-                    <Input
-                        placeholder="Display Name"
-                        type="text"
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}
-                    />
-                    <Input
-                        placeholder="Email"
-                        type="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                    />
-                    <Input
-                        className={password && matchPasswords(password, passwordConfirm) ? 'border-green-400' : 'border-red-400'}
-                        placeholder="Password"
-                        type="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                    />
-                    <Input
-                        className={password && matchPasswords(password, passwordConfirm) ? 'border-green-400' : 'border-red-400'}
-                        placeholder="Confirm password"
-                        type="password"
-                        onChange={(e) => setPasswordConfirm(e.target.value)}
-                        value={passwordConfirm}
-                    />
+                        <Input
+                            placeholder="Display Name"
+                            type="text"
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}
+                        />
+                        <Input
+                            placeholder="Email"
+                            type="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                        />
+                        <Input
+                            className={
+                                password &&
+                                matchPasswords(password, passwordConfirm)
+                                    ? 'border-green-400'
+                                    : 'border-red-400'
+                            }
+                            placeholder="Password"
+                            type="password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            value={password}
+                        />
+                        <Input
+                            className={
+                                password &&
+                                matchPasswords(password, passwordConfirm)
+                                    ? 'border-green-400'
+                                    : 'border-red-400'
+                            }
+                            placeholder="Confirm password"
+                            type="password"
+                            onChange={(e) => setPasswordConfirm(e.target.value)}
+                            value={passwordConfirm}
+                        />
                     </div>
                     <div className="flex justify-start">
                         <Button type="submit">Register</Button>
                     </div>
-                    <sub className="hover:underline cursor-pointer" onClick={() => setRegister(false)}>
+                    <sub
+                        className="hover:underline cursor-pointer"
+                        onClick={() => setRegister(false)}
+                    >
                         Already Have an Account?
                     </sub>
                 </form>
@@ -127,28 +134,23 @@ export default function Login() {
         <div className="grid place-items-center min-w-[50%] min-h-[100vh]">
             <form onSubmit={handleLogin} className="flex flex-col gap-3">
                 <div className="flex justify-start">
-                    <h1>Login</h1>
+                    <h1>Oraganizer Login</h1>
                 </div>
-                { error &&
-                        <span className="text-red-400"> {error} </span>
-                }
-                {
-                    message &&
-                    <span className="text-green-400"> {message} </span>
-                }
+                {error && <span className="text-red-400"> {error} </span>}
+                {message && <span className="text-green-400"> {message} </span>}
                 <div className="flex flex-col gap-1">
-                <Input
-                    placeholder="Email"
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                />
-                <Input
-                    placeholder="Password"
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                />
+                    <Input
+                        placeholder="Email"
+                        type="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+                    <Input
+                        placeholder="Password"
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                    />
                 </div>
                 <div className="flex justify-start">
                     <Button type="submit">Login</Button>
@@ -159,7 +161,4 @@ export default function Login() {
             </form>
         </div>
     );
-
-
-
 }

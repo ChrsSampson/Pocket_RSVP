@@ -21,6 +21,7 @@ import {
     SelectValue,
 } from '../components/ui/select';
 import FoodMenu from '../widgets/FoodMenu';
+import capialize from '../lib/capitalize';
 
 export default function Attendee_Dashboard() {
     const { id } = useParams();
@@ -31,7 +32,9 @@ export default function Attendee_Dashboard() {
     const [loading, setLoading] = useState(true);
 
     // form values
-    const [attending, setAttending] = useState(null);
+    const [attending, setAttending] = useState(
+        attendee ? attendee.attending : null
+    );
     const [plusOne, setPlusOne] = useState(
         attendee ? attendee.plus_one : false
     );
@@ -72,13 +75,25 @@ export default function Attendee_Dashboard() {
         }
     }
 
+    function convertAttendingToEnum(value) {
+        switch (value) {
+            case 'yes':
+                return 'true';
+                break;
+            case 'no':
+                return 'false';
+            default:
+                return 'pending';
+        }
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading(true);
 
         try {
             const data = {
-                attending,
+                attending: convertAttendingToEnum(attending),
                 plus_one: plusOne,
                 song_request: request,
                 food_selection: food,
@@ -143,7 +158,7 @@ export default function Attendee_Dashboard() {
                     </div>
                 )}
                 {attendee && (
-                    <section>
+                    <section className="px-[1em] py-[2em]">
                         <Card>
                             <div className="flex p-3 gap-2 align-center justify-end">
                                 <h3>Theme</h3>
@@ -151,8 +166,8 @@ export default function Attendee_Dashboard() {
                             </div>
                             <CardHeader>
                                 <CardTitle>
-                                    Hello, {attendee.first_name}{' '}
-                                    {attendee.last_name}
+                                    Hello, {capialize(attendee.first_name)}{' '}
+                                    {capialize(attendee.last_name)}
                                 </CardTitle>
                                 <CardDescription>
                                     We are going to need a couple things from
@@ -183,7 +198,10 @@ export default function Attendee_Dashboard() {
                                         </label>
                                         <Select
                                             name="attend"
-                                            value={attendee.attending}
+                                            value={attending}
+                                            onValueChange={(value) =>
+                                                setAttending(value)
+                                            }
                                         >
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select an option" />
@@ -300,7 +318,9 @@ export default function Attendee_Dashboard() {
                         </Card>
                     </section>
                 )}
-                <FoodMenu />
+                <div className="px-[1em]">
+                    <FoodMenu />
+                </div>
             </div>
         );
     }

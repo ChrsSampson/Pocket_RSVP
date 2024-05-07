@@ -45,16 +45,18 @@ export default function UserDashboard() {
 
     return (
         <RequireUser>
-            <div className="mb-[2em] flex justify-between">
+            <div className="mb-[2em] p-[1em] flex justify-between">
                 <h1 className="text-[2em] text-left">Dashboard</h1>
                 <UserBug />
             </div>
-            <div>{attendees && <Reports attendees={attendees} />}</div>
-            <div className="grid gap-3 grid-cols-1 md:grid-cols-2 place-content-start mx-auto">
+            <div className="px-[1em]">
+                {attendees && <Reports attendees={attendees} />}
+            </div>
+            <div className="grid gap-3 px-[1em] grid-cols-1 md:grid-cols-2 place-content-start mx-auto">
                 <CreatePartyForm />
                 <CreateAttendeeForm update={updateResults} parties={parties} />
             </div>
-            <div>
+            <div className="px-[1em] pb-[2em]">
                 <AttendeeList people={attendees} />
             </div>
         </RequireUser>
