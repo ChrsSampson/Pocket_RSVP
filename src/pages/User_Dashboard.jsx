@@ -14,6 +14,7 @@ export default function UserDashboard() {
 
     const [parties, setParties] = useState([]);
     const [attendees, setAttendees] = useState([]);
+    // const [page, setPage] = useState(1);
 
     async function getParties() {
         try {
@@ -26,8 +27,8 @@ export default function UserDashboard() {
 
     async function getAttendees() {
         try {
-            const data = await pb.collection('attendees').getList();
-            setAttendees(data.items);
+            const data = await pb.collection('attendees').getFullList();
+            setAttendees(data);
         } catch (error) {
             console.log(error);
         }

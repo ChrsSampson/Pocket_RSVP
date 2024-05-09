@@ -35,6 +35,8 @@ export default function Reports({ attendees = [] }) {
         }
     });
 
+    const hasFood = () => {};
+
     return (
         <section className="p-4 my-2 border border-spacing-1 rounded-lg">
             <div className="flex justify-between">
