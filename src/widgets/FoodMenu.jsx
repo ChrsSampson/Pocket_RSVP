@@ -15,22 +15,38 @@ export default function FoodMenu() {
                 <CardContent className="flex flex-col sm:flex-row gap-3 sm:gap-0  justify-around">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Rosemary Roasted Chicken</CardTitle>
-                        </CardHeader>
-                        <CardContent></CardContent>
-                    </Card>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Plain Prime Rib</CardTitle>
-                        </CardHeader>
-                        <CardContent></CardContent>
-                    </Card>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>WoodFired Salmon</CardTitle>
+                            <CardTitle>Roasted Italian Chicken</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p></p>
+                            <p>Garden Salad with dressing</p>
+                            <p>
+                                Baby Roasted Potatos, Grilled Seasonal
+                                Vegtables, Dinner Rolls
+                            </p>
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Prime Rib</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Garden Salad with dressing</p>
+                            <p>
+                                Baby Roasted Potatos, Grilled Seasonal
+                                Vegtables, Dinner Rolls
+                            </p>
+                        </CardContent>
+                    </Card>
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Maple Glazed Salmon</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p>Garden Salad with dressing</p>
+                            <p>
+                                Baby Roasted Potatos, Grilled Seasonal
+                                Vegtables, Dinner Rolls
+                            </p>
                         </CardContent>
                     </Card>
                 </CardContent>

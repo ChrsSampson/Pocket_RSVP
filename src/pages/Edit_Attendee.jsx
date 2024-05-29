@@ -138,7 +138,9 @@ export default function EditAttendeePage() {
                                     />
                                 </div>
                                 <div className="flex flex-col w-10/12 sm:w-1/3 place-items-center gap-2">
-                                    <label className="text-left">Attending</label>
+                                    <label className="text-left">
+                                        Attending
+                                    </label>
                                     <Select
                                         value={person.attending}
                                         onValueChange={(value) => {
@@ -167,7 +169,9 @@ export default function EditAttendeePage() {
                                     </Select>
                                 </div>
                                 <div className="flex flex-col place-items-center w-10/12 sm:w-1/3 gap-2">
-                                    <label className="text-left">Food Choice</label>
+                                    <label className="text-left">
+                                        Food Choice
+                                    </label>
                                     <Select
                                         value={person.food_selection}
                                         onValueChange={(value) => {
@@ -212,7 +216,9 @@ export default function EditAttendeePage() {
                                 </div>
                                 {person.plus_one && (
                                     <div className="flex flex-col place-items-center w-10/12 sm:w-1/3 justify-between gap-2">
-                                        <label className="text-left">Guest Food</label>
+                                        <label className="text-left">
+                                            Guest Food
+                                        </label>
                                         <Select
                                             value={person.plus_one_food}
                                             onValueChange={(value) => {

@@ -67,19 +67,27 @@ export default function AboutPage() {
                 <Container id="food">
                     <h1 className="text-2xl">Food</h1>
                     <Divider />
-                    <div className="md:text-xl max-w-[75%]">
-                        <p className="md:text-xl">Plated Dinner Options:</p>
-                        <p>Entrees: Prime Rib, Chicken, Salmon</p>
-                        <p>
-                            Sides: All Meals come with a Garden Salad and
-                            Potatos
-                        </p>
-                        <p>Dessert: Cookies and Pastries</p>
-                        <div className="text-center">
-                            <sub>*Gluten free options will be availible</sub>
+                    <div className="md:text-xl max-w-[75%] flex flex-col gap-2">
+                        <div className="border rounded-md">
+                            <h3 className="text-[1.2em] underline">Entrees</h3>
+                            <div className="flex flex-col">
+                                <p>Prime Rib</p>
+                                <p>Italian Roasted Chicken</p>
+                                <p>Maple Glazed Salmon</p>
+                            </div>
+                        </div>
+                        <div className="border rounded-md">
+                            <h3 className="text-[1.2em] underline">Sides</h3>
+                            <div className="flex flex-col p-2">
+                                <p>Garden Salad with dressing</p>
+                                <p className="">
+                                    Baby Roasted Potatoes, Grilled Seasonal
+                                    Vegatables, Dinner Rolls
+                                </p>
+                            </div>
                         </div>
                         <div className="text-center">
-                            <sub>**Vegitarian options will be availible</sub>
+                            <sub>*Gluten free options will be availible</sub>
                         </div>
                     </div>
                 </Container>
@@ -108,6 +116,13 @@ export default function AboutPage() {
                     <Divider />
                     <p>Some hotels that we recommned:</p>
                     <div>
+                        <div>
+                            <a href="https://chautauquasuites.com/">
+                                <h3 className="text-[1.25em] text-white bg-navy-500 rounded-sm hover:bg-navy-300 px-[.5em] py-[.25em]">
+                                    Chautauqua Suites
+                                </h3>
+                            </a>
+                        </div>
                         <div className="flex my-2 flex-col sm:flex-row gap-2 justify-center">
                             <a href="https://www.hilton.com/en/hotels/jhwnkhx-hampton-suites-jamestown/">
                                 <h3 className="text-[1.25em] text-white bg-navy-500 rounded-sm hover:bg-navy-300 px-[.5em] py-[.25em]">
@@ -153,7 +168,7 @@ export default function AboutPage() {
                             <p className="px-[4em] text-left mb-[1em] indent-8 leading-7">
                                 A QRcode will be listed below to scan if you
                                 wish to send us a small gift to celebrate. A
-                                link to our amazon registry is alos availible.
+                                link to our amazon registry is also available.
                                 All gifts will be greatly appreciated! <br />
                                 Thank you!
                             </p>
@@ -166,7 +181,7 @@ export default function AboutPage() {
                             Wedding Registry
                         </a>
                     </div>
-                    <div>
+                    <div className="hover:border rounded-md px-2">
                         <span className="text-[1.25em]">Venmo</span>
                         <a href="https://venmo.com/u/heather-sampson-10">
                             <img className="h-[10em]" src="/img/venmo_qr.png" />

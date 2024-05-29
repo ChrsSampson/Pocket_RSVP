@@ -245,7 +245,7 @@ export default function Attendee_Dashboard() {
                                                     Prime Rib
                                                 </SelectItem>
                                                 <SelectItem value="3">
-                                                    Salmon
+                                                    Glazed Salmon
                                                 </SelectItem>
                                             </SelectContent>
                                         </Select>
@@ -299,7 +299,7 @@ export default function Attendee_Dashboard() {
                                                         Prime Rib
                                                     </SelectItem>
                                                     <SelectItem value="3">
-                                                        Salmon
+                                                        Glazed Salmon
                                                     </SelectItem>
                                                 </SelectContent>
                                             </Select>
