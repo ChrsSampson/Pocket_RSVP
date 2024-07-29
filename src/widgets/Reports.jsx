@@ -69,11 +69,11 @@ export default function Reports({ attendees = [] }) {
                     )}
                 </div>
                 <div className="flex flex-col gap-2">
-                    <Button onClick={() => navigate('/qr_codes')}>
-                        QR Code Sheet
-                    </Button>
                     <Button onClick={() => navigate('/playlist')}>
-                        Playlist
+                        Playlist (fixed)
+                    </Button>
+                    <Button onClick={() => navigate('/foodreport')}>
+                        Food Report
                     </Button>
                 </div>
             </div>

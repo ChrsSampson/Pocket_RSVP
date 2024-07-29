@@ -79,9 +79,7 @@ export default function AttendeeLoginPage() {
             <Card>
                 <CardHeader>
                     <CardTitle>RSVP Login</CardTitle>
-                    <CardDescription>
-                        Your invite code was in your invitation
-                    </CardDescription>
+                    <CardDescription>Enter Your Name.</CardDescription>
                     {error && <span className="text-red-400">{error}</span>}
                 </CardHeader>
                 <CardContent>

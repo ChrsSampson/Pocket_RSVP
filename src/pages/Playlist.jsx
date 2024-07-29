@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useId } from 'react';
 import RequireUser from '../lib/RequireUser';
 import pb from '../lib/pocketclient';
 import { useNavigate } from 'react-router-dom';
@@ -44,30 +44,16 @@ export default function Playlist() {
                     song: item.song_request,
                     name: `${item.first_name} ${item.last_name}`,
                 };
-                if (e.song) {
+                if (item.attending && e.song) {
                     accumulator.push(e);
                 }
-                if (item.attending === 'true') {
-                    return accumulator;
-                }
+                return accumulator;
             }, []);
             setItems(entries);
         } catch (error) {
             setError(error.message);
             console.log(error);
         }
-    }
-
-    function reduce_to_song_data(collection) {
-        return collection.reduce((accum = [], item) => {
-            if (item.song_request) {
-                accum.push({
-                    name: `${item.first_name} ${item.last_name}`,
-                    song: item.song_request,
-                });
-            }
-            return accum;
-        }, []);
     }
 
     useEffect(() => {
@@ -77,7 +63,7 @@ export default function Playlist() {
     return (
         <RequireUser>
             {error && <span className="text-red-400">{error}</span>}
-            <Card>
+            <Card className="m-[2em]">
                 <CardHeader>
                     <div className="flex justify-start">
                         <Button onClick={() => navigate('/dashboard')}>
@@ -86,9 +72,7 @@ export default function Playlist() {
                     </div>
                     {!error && (
                         <>
-                            <CardTitle>
-                                Yeah I brought the Jams. You're welcome.
-                            </CardTitle>
+                            <CardTitle>I Fixed the Song Requests</CardTitle>
                             <CardDescription className="">
                                 The people has spoken
                             </CardDescription>
@@ -103,10 +87,16 @@ export default function Playlist() {
                                 <TableCell>Song Request</TableCell>
                             </TableRow>
                         </TableHeader>
-                        {items &&
-                            items.map((e, i) => (
-                                <TableItem song={e.song} name={e.name} />
-                            ))}
+                        <TableBody>
+                            {items &&
+                                items.map((e, i) => (
+                                    <TableItem
+                                        key={e.song + e.name + i}
+                                        song={e.song}
+                                        name={e.name}
+                                    />
+                                ))}
+                        </TableBody>
                     </Table>
                 </CardContent>
             </Card>

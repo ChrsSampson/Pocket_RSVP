@@ -13,6 +13,7 @@ import Playlist from './pages/Playlist';
 import AttendeeLoginPage from './pages/Attendee_Login';
 import AboutPage from './pages/About';
 import Location from './pages/Location';
+import Report from './pages/Report';
 
 const routes = [
     {
@@ -21,7 +22,7 @@ const routes = [
         index: true,
     },
     {
-        path: "/about",
+        path: '/about',
         element: <AboutPage />,
     },
     {
@@ -55,6 +56,10 @@ const routes = [
     {
         path: 'playlist',
         element: <Playlist />,
+    },
+    {
+        path: 'foodreport',
+        element: <Report />,
     },
     {
         path: '*',
